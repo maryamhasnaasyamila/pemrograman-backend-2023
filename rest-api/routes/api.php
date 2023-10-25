@@ -20,11 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// // Latihan 1
-// Route::get("/animals", function() {
-//     echo "Menampilkn data Hewan";
-// });
-
 // method GET
 Route::get('/animals', 
 [AnimalController::class, 'index']);
