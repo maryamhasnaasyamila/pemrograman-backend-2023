@@ -42,7 +42,6 @@ Route::delete('/animals/{id}',
 [AnimalController::class, 'destroy']);
 
 // Pertemuan 5
-
 // method GET
 Route::get('/students', 
 [StudentController::class, 'index']);
@@ -60,3 +59,8 @@ Route::put('/students/{id}',
 // method DELETE
 Route::delete('/students/{id}', 
 [StudentController::class, 'destroy']);
+
+// Praktikum 6
+// GET detail data Student
+Route::get('/students/{id}',
+[StudentController::class, 'show']);

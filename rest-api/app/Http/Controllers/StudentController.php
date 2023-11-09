@@ -30,19 +30,11 @@ class StudentController extends Controller
 			return response()->json($response, 200);
 		} else {
 			$response = [
-				'message' => 'Data tidak ada'
+				'message' => 'Data tidak ada',
 			];
 			return response()->json($response, 200);
 		}
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    // public function create()
-    // {
-    //     //
-    // }
 
     /**
      * Store a newly created resource in storage.
@@ -54,7 +46,7 @@ class StudentController extends Controller
 			'nama' => $request->nama,
 			'nim' => $request->nim,
 			'email' => $request->email,
-			'jurusan' => $request->jurusan
+			'jurusan' => $request->jurusan,
 		];
 
 		$student = Student::create($request->all());
@@ -83,7 +75,7 @@ class StudentController extends Controller
         return response()->json($response, 200);
     }
 
-    public function update(Request $request, $id){
+     public function update(Request $request, $id){
         echo "# Update Student. <br><br>";
 
         $student = Student::find($id);
@@ -114,38 +106,24 @@ class StudentController extends Controller
 
         return response()->json($data, 200);
     }
+
+    public function show($id) {
+		$student = Student::find($id);
+
+		if ($student) {
+			$response = [
+				'message' => 'Get detail student',
+				'data' => $student
+			];
+	
+			return response()->json($response, 200);
+		} else {
+			$response = [
+				'message' => 'Data not found'
+			];
+			
+			return response()->json($response, 404);
+		}
+	}
 }
-
-
-    /**
-     * Display the specified resource.
-     */
-    // public function show(string $id)
-    // {
-    //     //
-    // }
-
-    // /**
-    //  * Show the form for editing the specified resource.
-    //  */
-    // public function edit(string $id)
-    // {
-    //     //
-    // }
-
-    // /**
-    //  * Update the specified resource in storage.
-    //  */
-    // public function update(Request $request, string $id)
-    // {
-    //     //
-    // }
-
-    // /**
-    //  * Remove the specified resource from storage.
-    //  */
-    // public function destroy(string $id)
-    // {
-    //     //
-    // }
 
