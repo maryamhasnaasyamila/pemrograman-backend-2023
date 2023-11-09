@@ -107,7 +107,8 @@ class StudentController extends Controller
         return response()->json($data, 200);
     }
 
-    public function show($id) {
+    public function show(Request $request, $id)
+	{
 		$student = Student::find($id);
 
 		if ($student) {
