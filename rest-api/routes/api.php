@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AnimalController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\AuthController;
 
 
 /*
@@ -17,12 +18,31 @@ use App\Http\Controllers\StudentController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+// deafult
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    //     return $request->user();
+    // });
+    
+// praktikum 7
+Route::middleware('auth:sanctum')->group(function () {
+    # Method GET, route /students
+    Route::get('/students', [StudentController::class, 'index']);
+    # Create student
+    Route::post('/students', [StudentController::class, 'store']);;
+    # Update student
+    Route::put('/students/{id}', [StudentController::class, 'update']);;
+    # Delete student
+    Route::delete('/students/{id}', [StudentController::class, 'destroy']);;
 });
 
-// Pertemuan 4
+// praktikum 7
+Route::post('/login', 
+[AuthController::class, 'login']);
 
+Route::post('/register', 
+[AuthController::class, 'register']);
+
+// Pertemuan 4
 // method GET
 Route::get('/animals', 
 [AnimalController::class, 'index']);

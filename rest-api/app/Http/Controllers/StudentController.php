@@ -34,6 +34,7 @@ class StudentController extends Controller
 			];
 			return response()->json($response, 200);
 		}
+
     }
 
     /**
@@ -42,14 +43,26 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         echo "# Update Student. <br><br>";
-        $input = [
-			'nama' => $request->nama,
-			'nim' => $request->nim,
-			'email' => $request->email,
-			'jurusan' => $request->jurusan,
-		];
+        // $input = [
+		// 	'nama' => $request->nama,
+		// 	'nim' => $request->nim,
+		// 	'email' => $request->email,
+		// 	'jurusan' => $request->jurusan,
+		// ];
 
-		$student = Student::create($request->all());
+        // praktikum 7 - validasi
+        $validatedData = $request->validate([
+            'nama' => 'required',
+            'nim' => 'numeric|required',
+            'email' => 'email|required',
+            'jurusan' => 'required'
+        ]);
+
+        // praktikum 7
+        $student = Student::create($validatedData);
+
+        // praktikum 6
+		// $student = Student::create($request->all());
 
 		$response = [
 			'message' => 'Data Student Berhasil Dibuat',
