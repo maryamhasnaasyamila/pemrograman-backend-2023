@@ -9,7 +9,7 @@ const router = express.Router();
 
 // make home routing
 router.get("/", (req, res) => {
-    res.send("Annyeong Haseo Rika");
+  res.send("Hi Hasna!");
 });
 
 // Routing for Students
